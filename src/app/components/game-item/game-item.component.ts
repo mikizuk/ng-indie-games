@@ -9,6 +9,7 @@ import { IndieGamesService } from './../../service/indie-games.service';
 })
 export class GameItemComponent implements OnInit {
   game: Game;
+  eventType: EventType = EventType.Update;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -23,6 +24,11 @@ export class GameItemComponent implements OnInit {
         next: (game: Game) => this.game = game,
         error: err => console.log(err)
       })
+  }
+
+  onSubmitClick = (game: GameEvent): void => {
+    // this.gamesService.updateGame(game);
+    this.router.navigate(['/indie-games-list']);
   }
 
 }

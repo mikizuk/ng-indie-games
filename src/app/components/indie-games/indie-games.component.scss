@@ -55,10 +55,16 @@
   }
 
   .nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
     margin-left: auto;
     .nav__item {
+      height: 100%;
+      align-items: center;
+      display: flex;
       color: white;
-      padding: 0 16px;
+      padding: 16px;
       text-decoration: none;
       &:hover {
         cursor: pointer;

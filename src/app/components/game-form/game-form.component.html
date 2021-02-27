@@ -1,0 +1,24 @@
+<form [formGroup]="formGroup" class="game-form-container" (ngSubmit)="submitClick()">
+  <label>
+    Title
+    <input type="text" formControlName="title">
+  </label>
+  <label>
+    Author
+    <input type="text" formControlName="author">
+  </label>
+  <label>
+    Email
+    <input type="text" formControlName="email">
+  </label>
+  <label>
+    Image
+    <input type="text" formControlName="previewImageUrl">
+  </label>
+  <img [src]="formGroup.get('previewImageUrl')?.value"   height="300" alt="">
+  <label>
+    <a [href]="formGroup.get('itemUrl')?.value" target="_blank">Link to game</a>&nbsp;
+    <input type="text" formControlName="itemUrl">
+  </label>
+  <button type="submit" [disabled]="formGroup.pristine || !formGroup.valid">{{ buttonCaption }}</button>
+</form>

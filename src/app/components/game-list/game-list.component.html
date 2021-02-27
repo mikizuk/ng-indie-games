@@ -1,12 +1,12 @@
-<h1>list of games!</h1>
+<h1>List of games!</h1>
 
 <ol>
   <li *ngFor="let game of games">
-    <a routerLink="/game-item/{{game.id}}" routerLinkActive="router-link-active" >{{ game.title }}</a>
+    <a class="game-item" routerLink="/game-item/{{game.id}}" routerLinkActive="router-link-active" >{{ game.title }}</a>
   </li>
 </ol>
 
 <div *ngIf="games?.length === 0">
-  No games in your list? Check our suggestions!
-  <!-- <a class="nav__item" routerLink="/indie-games-suggested" routerLinkActive="router-link-active">Suggested games</a> -->
+  No games in your list?
+  <a class="nav__item" routerLink="/game-add" routerLinkActive="router-link-active">Add your first game now!</a>
 </div>

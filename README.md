@@ -1,8 +1,11 @@
-# NgIndieGames - Angular CRUD app with RxJS and session storage
+# NgIndieGames
 
 
+Angular CRUD app with RxJS and session storage
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+## Live demo
+
+[Live demo link](https://daxtersky.github.io/ng-indie-games/game-list)
 
 ## Development server
 

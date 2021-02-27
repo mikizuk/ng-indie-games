@@ -1,13 +1,14 @@
 <header class="header">
   <span class="header__title">Free indie games</span>
   <nav class="nav">
-
+    <a class="nav__item" routerLink="/indie-games" routerLinkActive="router-link-active">List of games</a>
   </nav>
 
 </header>
 
 <main class="main-container" role="main">
 
+  <router-outlet></router-outlet>
 
   <footer class="footer">
     <span class="footer__link-title">Link to&nbsp;</span><a class="footer__link-item" href="https://github.com/daxtersky" target="_blank" rel="noopener">project

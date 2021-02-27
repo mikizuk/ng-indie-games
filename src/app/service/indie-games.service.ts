@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class IndieGamesService {
   public games$ = new BehaviorSubject<Game[]>([]);
+  public game$ = new BehaviorSubject<Game>(null);
   private gamesSuggested: Game[] = [
     { id: 1, title: 'Disco Elysium', previewImageUrl: '', itemUrl: '', author: 'author unknown', email: 'email@placeholder.com' },
     { id: 2, title: 'Untitled Goose Game', previewImageUrl: '', itemUrl: '', author: 'author unknown', email: 'email@placeholder.com' },
@@ -31,4 +32,7 @@ export class IndieGamesService {
     this.games$.next(this.gamesSuggested);
     console.log('games$', this.games$.getValue());
   }
+
+  public readGame = (id: number): void => this.game$.next(this.games$.getValue().find(game => game.id === id))
+
 }

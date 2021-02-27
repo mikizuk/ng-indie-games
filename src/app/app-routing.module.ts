@@ -6,10 +6,11 @@ import { GameItemComponent } from './components/game-item/game-item.component';
 import { GameAddComponent } from './components/game-add/game-add.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'indie-games', pathMatch: 'full' },
+  { path: '', redirectTo: 'game-list', pathMatch: 'full' },
   { path: 'game-list', component: GameListComponent },
   { path: 'game-item/:id', component: GameItemComponent },
   { path: 'game-add', component: GameAddComponent },
+  // { path: '404', component: PageNotFoundComponent },
   { path: '**', component: GameListComponent },
 ];
 

@@ -27,8 +27,15 @@ export class GameItemComponent implements OnInit {
   }
 
   onSubmitClick = (game: GameEvent): void => {
-    // this.gamesService.updateGame(game);
+    this.gamesService.updateGame(game);
     this.router.navigate(['/indie-games-list']);
+  }
+
+  onDeleteClick = (gameId: number | undefined): void => {
+    if (gameId && confirm(`Do you want to delete ${this.game?.title}?`)) {
+      this.gamesService.deleteGame(gameId);
+      this.router.navigate(['/indie-games-list']);
+    }
   }
 
 }

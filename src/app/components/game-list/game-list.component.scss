@@ -2,4 +2,7 @@
   color: darkblue;
   font-weight: 600;
   font-size: 20px;
+  &:hover {
+    color: red;
+  }
 }

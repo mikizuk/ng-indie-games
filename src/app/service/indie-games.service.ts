@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import Utils from './../utils/indie-games.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,52 @@ export class IndieGamesService {
   ];
 
   constructor() {
-    this.games$.next(this.gamesSuggested);
+    this.handleGames();
   }
 
+  public createGame = (newGame: Game): void => {
+    newGame.id = this.getUniqueId() as number;
+    this.games$.next([...this.games$.getValue(), newGame]);
+    this.updateLocalStorage();
+  };
+
   public readGame = (id: number): void => this.game$.next(this.games$.getValue().find(game => game.id === id))
+
+  public updateGame = (gameUpdated: GameEvent): void => {
+    this.games$.next(this.games$.getValue().map(item => item.id === gameUpdated.id ? gameUpdated : item))
+    this.updateLocalStorage();
+  }
+
+  public deleteGame = (id: number): void => {
+    this.games$.next(this.games$.getValue().filter(game => game.id !== id))
+    this.updateLocalStorage();
+  }
+
+  private getUniqueId = (): Function | number => {
+    const actualGamesIds: number[] = this.games$.getValue().map(game => game.id);
+    const randomId = Utils.getRandomId();
+
+    if (actualGamesIds.includes(randomId)) {
+      return this.getUniqueId();
+    } else {
+      return randomId;
+    }
+  }
+
+  private getGamesFromLocalStorage = (): void => {
+    this.games$.next(JSON.parse(sessionStorage?.getItem('indie-games') as string));
+  }
+
+  private updateLocalStorage = (): void => {
+    sessionStorage.setItem('indie-games', JSON.stringify(this.games$.getValue()));
+  }
+
+  private handleGames = (): void => {
+    if (sessionStorage.getItem('indie-games')?.length) {
+      this.getGamesFromLocalStorage();
+    } else {
+      this.games$.next(this.gamesSuggested);
+    }
+  }
 
 }

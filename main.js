@@ -153,7 +153,7 @@ class GameItemComponent {
     }
 }
 GameItemComponent.ɵfac = function GameItemComponent_Factory(t) { return new (t || GameItemComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_indie_games_service__WEBPACK_IMPORTED_MODULE_2__["IndieGamesService"])); };
-GameItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameItemComponent, selectors: [["app-game-item"]], decls: 7, vars: 3, consts: [[3, "eventType", "game", "formSubmit"], ["routerLink", "/indie-games-list", "routerLinkActive", "router-link-active"], [3, "click"]], template: function GameItemComponent_Template(rf, ctx) { if (rf & 1) {
+GameItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameItemComponent, selectors: [["app-game-item"]], decls: 7, vars: 3, consts: [[3, "eventType", "game", "formSubmit"], ["routerLink", "/game-list", "routerLinkActive", "router-link-active"], [3, "click"]], template: function GameItemComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -190,6 +190,33 @@ __webpack_require__.r(__webpack_exports__);
 class Utils {
 }
 Utils.getRandomId = () => Math.floor((Math.random() * 100) + 1);
+
+
+/***/ }),
+
+/***/ "JzmT":
+/*!***********************************************************************!*\
+  !*** ./src/app/components/page-not-found/page-not-found.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: PageNotFoundComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PageNotFoundComponent", function() { return PageNotFoundComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+class PageNotFoundComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+PageNotFoundComponent.ɵfac = function PageNotFoundComponent_Factory(t) { return new (t || PageNotFoundComponent)(); };
+PageNotFoundComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: PageNotFoundComponent, selectors: [["app-page-not-found"]], decls: 2, vars: 0, template: function PageNotFoundComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "page-not-found works!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, encapsulation: 2 });
 
 
 /***/ }),
@@ -326,7 +353,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_indie_games_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./service/indie-games.service */ "OOTw");
 /* harmony import */ var _components_game_add_game_add_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/game-add/game-add.component */ "pO5Z");
 /* harmony import */ var _components_game_form_game_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/game-form/game-form.component */ "u3/M");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/page-not-found/page-not-found.component */ "JzmT");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ "fXoL");
 
 // ROUTING
 
@@ -342,21 +370,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 class AppModule {
 }
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [_service_indie_games_service__WEBPACK_IMPORTED_MODULE_7__["IndieGamesService"]], imports: [[
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [_service_indie_games_service__WEBPACK_IMPORTED_MODULE_7__["IndieGamesService"]], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
             _app_routing_module__WEBPACK_IMPORTED_MODULE_1__["AppRoutingModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"]
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
         _components_indie_games_indie_games_component__WEBPACK_IMPORTED_MODULE_4__["IndieGamesComponent"],
         _components_game_list_game_list_component__WEBPACK_IMPORTED_MODULE_5__["GameListComponent"],
         _components_game_item_game_item_component__WEBPACK_IMPORTED_MODULE_6__["GameItemComponent"],
         _components_game_add_game_add_component__WEBPACK_IMPORTED_MODULE_8__["GameAddComponent"],
-        _components_game_form_game_form_component__WEBPACK_IMPORTED_MODULE_9__["GameFormComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _components_game_form_game_form_component__WEBPACK_IMPORTED_MODULE_9__["GameFormComponent"],
+        _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_10__["PageNotFoundComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _app_routing_module__WEBPACK_IMPORTED_MODULE_1__["AppRoutingModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"]] }); })();
@@ -396,7 +426,7 @@ class GameAddComponent {
     }
 }
 GameAddComponent.ɵfac = function GameAddComponent_Factory(t) { return new (t || GameAddComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_indie_games_service__WEBPACK_IMPORTED_MODULE_2__["IndieGamesService"])); };
-GameAddComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameAddComponent, selectors: [["app-game-add"]], decls: 5, vars: 1, consts: [[3, "eventType", "formSubmit"], ["routerLink", "/indie-games-list", "routerLinkActive", "router-link-active"]], template: function GameAddComponent_Template(rf, ctx) { if (rf & 1) {
+GameAddComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameAddComponent, selectors: [["app-game-add"]], decls: 5, vars: 1, consts: [[3, "eventType", "formSubmit"], ["routerLink", "/game-list", "routerLinkActive", "router-link-active"]], template: function GameAddComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h1");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "add game!");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -557,6 +587,7 @@ const routes = [
     { path: 'game-list', component: _components_game_list_game_list_component__WEBPACK_IMPORTED_MODULE_1__["GameListComponent"] },
     { path: 'game-item/:id', component: _components_game_item_game_item_component__WEBPACK_IMPORTED_MODULE_2__["GameItemComponent"] },
     { path: 'game-add', component: _components_game_add_game_add_component__WEBPACK_IMPORTED_MODULE_3__["GameAddComponent"] },
+    // { path: '404', component: PageNotFoundComponent },
     { path: '**', component: _components_game_list_game_list_component__WEBPACK_IMPORTED_MODULE_1__["GameListComponent"] },
 ];
 class AppRoutingModule {

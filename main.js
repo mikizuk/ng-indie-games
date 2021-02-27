@@ -553,7 +553,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    { path: '', redirectTo: 'indie-games', pathMatch: 'full' },
+    { path: '', redirectTo: 'game-list', pathMatch: 'full' },
     { path: 'game-list', component: _components_game_list_game_list_component__WEBPACK_IMPORTED_MODULE_1__["GameListComponent"] },
     { path: 'game-item/:id', component: _components_game_item_game_item_component__WEBPACK_IMPORTED_MODULE_2__["GameItemComponent"] },
     { path: 'game-add', component: _components_game_add_game_add_component__WEBPACK_IMPORTED_MODULE_3__["GameAddComponent"] },

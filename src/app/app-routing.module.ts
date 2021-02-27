@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'game-list', component: GameListComponent },
   { path: 'game-item/:id', component: GameItemComponent },
   { path: 'game-add', component: GameAddComponent },
-  // { path: '404', component: PageNotFoundComponent },
   { path: '**', component: GameListComponent },
 ];
 

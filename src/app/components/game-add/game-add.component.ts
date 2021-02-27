@@ -18,6 +18,6 @@ export class GameAddComponent implements OnInit {
 
   onSubmitClick = (newGame: GameEvent): void => {
     this.gamesService.createGame(newGame);
-    this.router.navigate(['/indie-games-list']);
+    this.router.navigate(['/games-list']);
   }
 }

@@ -21,20 +21,24 @@ export class GameItemComponent implements OnInit {
 
     this.gamesService.game$
       .subscribe({
-        next: (game: Game) => this.game = game,
+        next: (game: Game) => {
+          game
+            ? this.game = game
+            : this.router.navigate(['/game-list'])
+        },
         error: err => console.log(err)
       })
   }
 
   onSubmitClick = (game: GameEvent): void => {
     this.gamesService.updateGame(game);
-    this.router.navigate(['/indie-games-list']);
+    this.router.navigate(['/games-list']);
   }
 
   onDeleteClick = (gameId: number | undefined): void => {
     if (gameId && confirm(`Do you want to delete ${this.game?.title}?`)) {
       this.gamesService.deleteGame(gameId);
-      this.router.navigate(['/indie-games-list']);
+      this.router.navigate(['/games-list']);
     }
   }
 

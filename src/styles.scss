@@ -19,27 +19,37 @@ body {
   background-color: #f5f5ff;
 }
 
+// SHARED
+
 .button-container {
   display: flex;
   width: 600px;
   justify-content: flex-end;
 }
-  .button {
-    height: 40px;
-    width: 120px;
-    font-size: 18px;
-    font-weight: 600;
-    border: 2px solid darkblue;
-    border-radius: 4px;
-    color: darkblue;
-    background-color: white;
+.button {
+  height: 40px;
+  width: 120px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid darkblue;
+  border-radius: 4px;
+  color: darkblue;
+  background-color: white;
+  &:not(:disabled):hover {
     cursor: pointer;
-    &:hover {
-      color: red;
-      text-decoration: underline;
-      border: 2px solid red;
-    }
+    color: red;
+    text-decoration: underline;
+    border: 2px solid red;
   }
-  .button--far-left {
-    margin-right: auto;
+  &:disabled {
+    color: grey;
+    border: 2px solid grey;
+    opacity: 0.5;
   }
+}
+.button--far-left {
+  margin-right: auto;
+}
+
+// RWD
+@import './rwd.scss';

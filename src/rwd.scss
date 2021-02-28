@@ -1,0 +1,42 @@
+@media screen and (max-width: 765px) {
+  // INDIE GAMES
+  .header {
+    padding: 0 10px;
+    .header__title {
+      font-size: 16px;
+    }
+    .nav .nav__item {
+      padding: 16px 6px;
+      font-size: 12px;
+      border: 2px solid initial;
+    }
+  }
+  .footer {
+    font-size: 12px;
+    font-weight: initial;
+  }
+  .svg-clouds {
+    position: fixed;
+    bottom: -200px;
+    left: -23px;
+    z-index: -10;
+    width: 1099px;
+  }
+  // GAMES LIST
+  .game-list .game-list__item {
+    font-size: 16px;
+    font-weight: initial;
+  }
+  // GAME ...
+  .button-container {
+    width: 300px;
+  }
+  // GAME FORM
+  .game-form {
+    width: 300px;
+  }
+    .game-image {
+      width: 300px;
+      height: 200px;
+    }
+}

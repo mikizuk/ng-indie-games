@@ -32,4 +32,9 @@
 }
 .game-image {
   margin: 10px 0;
+  width: 600px;
+  height: 400px;
 }
+
+// RWD
+@import './../../../rwd.scss';

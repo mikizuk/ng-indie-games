@@ -18,4 +18,8 @@ export class GameListComponent implements OnInit {
         error: err => console.log(err)
       })
   }
+
+  addSuggestedClick = (): void => {
+    this.gamesService.addSuggestedGames();
+  }
 }

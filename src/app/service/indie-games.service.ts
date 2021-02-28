@@ -30,7 +30,9 @@ export class IndieGamesService {
   ];
 
   constructor() {
-    this.handleGames();
+    if (sessionStorage.getItem('indie-games')?.length) {
+      this.getGamesFromLocalStorage();
+    }
   }
 
   public createGame = (newGame: Game): void => {
@@ -51,6 +53,11 @@ export class IndieGamesService {
     this.updateLocalStorage();
   }
 
+  public addSuggestedGames = (): void => {
+    this.games$.next(this.gamesSuggested);
+    this.updateLocalStorage();
+  }
+
   private getUniqueId = (): Function | number => {
     const actualGamesIds: number[] = this.games$.getValue().map(game => game.id);
     const randomId = Utils.getRandomId();
@@ -68,14 +75,6 @@ export class IndieGamesService {
 
   private updateLocalStorage = (): void => {
     sessionStorage.setItem('indie-games', JSON.stringify(this.games$.getValue()));
-  }
-
-  private handleGames = (): void => {
-    if (sessionStorage.getItem('indie-games')?.length) {
-      this.getGamesFromLocalStorage();
-    } else {
-      this.games$.next(this.gamesSuggested);
-    }
   }
 
 }

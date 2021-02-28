@@ -1,7 +1,7 @@
 <h1>List of games</h1>
 
 <ol class="game-list">
-  <li *ngFor="let game of games">
+  <li class="game-list__element" *ngFor="let game of games">
     <a class="game-list__item" routerLink="/game-item/{{game.id}}" routerLinkActive="router-link-active" >{{ game.title }}</a>
   </li>
 </ol>

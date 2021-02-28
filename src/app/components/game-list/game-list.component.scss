@@ -8,15 +8,20 @@
 
 .game-list {
   margin-top: 0;
-  .game-list__item {
-    color: darkblue;
-    font-weight: 600;
-    font-size: 20px;
-    &:hover {
-      color: red;
+  .game-list__element {
+    line-height: 30px;
+    .game-list__item {
+      color: #e71313;
+      font-weight: 400;
+      font-size: 20px;
+      text-decoration: none;
+      &:hover {
+        color:darken($color: #e71313, $amount: 15);
+        text-decoration: underline;
+      }
     }
   }
 }
 
 // RWD
-@import './../../../rwd.scss';
+@import "./../../../rwd.scss";

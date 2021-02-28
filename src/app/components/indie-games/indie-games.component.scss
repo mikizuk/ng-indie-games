@@ -60,41 +60,46 @@
     align-items: center;
     margin-left: auto;
     .nav__item {
-      height: 100%;
       align-items: center;
       display: flex;
-      color: white;
+      color: #ffe721;
       padding: 16px;
       text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 4px;
       &:hover {
         cursor: pointer;
         color: red;
         text-decoration: underline;
+        border: 2px solid red;
       }
     }
   }
 }
 
 // MAIN
+
 .main-container {
   display: flex;
   flex-grow: 1;
-  padding: 0 16px;
   flex-direction: column;
   align-items: center;
+  padding: 0 16px;
 }
 
 // FOOTER
 
-footer {
+.footer {
   margin-top: auto;
   margin-bottom: 12px;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  font-weight: 600;
   .footer__link-item,
   .footer__link-title {
-    color: white;
-    // color: #1976d2;
+    color: #ffe721;
   }
   .footer__link-item {
     text-decoration: none;
@@ -109,7 +114,7 @@ footer {
 .svg-clouds {
   position: fixed;
   bottom: -160px;
-  left: -230px;
+  // left: -230px;
   z-index: -10;
   width: 1920px;
 }

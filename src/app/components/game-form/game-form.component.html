@@ -1,24 +1,30 @@
-<form [formGroup]="formGroup" class="game-form-container" (ngSubmit)="submitClick()">
-  <label>
-    Title
-    <input type="text" formControlName="title">
+<form [formGroup]="formGroup" class="game-form" (ngSubmit)="submitClick()">
+
+  <label class="game-form__label">
+    <span class="game-form__title">Title</span>
+    <input class="game-form__input" type="text" formControlName="title">
   </label>
-  <label>
-    Author
-    <input type="text" formControlName="author">
+  <label class="game-form__label">
+    <span class="game-form__title">Author</span>
+    <input class="game-form__input" type="text" formControlName="author">
   </label>
-  <label>
-    Email
-    <input type="text" formControlName="email">
+  <label class="game-form__label">
+    <span class="game-form__title">Email</span>
+    <input class="game-form__input" type="text" formControlName="email">
   </label>
-  <label>
-    Image
-    <input type="text" formControlName="previewImageUrl">
+  <label class="game-form__label">
+    <span class="game-form__title">Image</span>
+    <input class="game-form__input" type="text" formControlName="previewImageUrl">
   </label>
-  <img [src]="formGroup.get('previewImageUrl')?.value"   height="300" alt="">
-  <label>
-    <a [href]="formGroup.get('itemUrl')?.value" target="_blank">Link to game</a>&nbsp;
-    <input type="text" formControlName="itemUrl">
+  <label class="game-form__label">
+    <span class="game-form__title"><a [href]="formGroup.get('itemUrl')?.value" target="_blank">Link</a>&nbsp;</span>
+    <input class="game-form__input" type="text" formControlName="itemUrl">
   </label>
-  <button type="submit" [disabled]="formGroup.pristine || !formGroup.valid">{{ buttonCaption }}</button>
+
+  <div class="game-form__button-wrapper">
+    <button class="button" type="submit" [disabled]="formGroup.pristine || !formGroup.valid">{{ buttonCaption }}</button>
+  </div>
+
 </form>
+
+<img class="game-image" [src]="formGroup.get('previewImageUrl')?.value" width="600" height="400" alt="Game image">

@@ -43,7 +43,7 @@ export class GameFormComponent implements OnInit {
     if (this.eventType === EventType.Add) {
       this.buttonCaption = 'Add game';
     } else if (this.eventType === EventType.Update) {
-      this.buttonCaption = 'Update game';
+      this.buttonCaption = 'Save';
     }
   }
 

@@ -1,4 +1,35 @@
-.game-form-container {
+:host {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.game-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 600px;
+
+  .game-form__label {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    .game-form__title {
+      font-size: 20px;
+      width: 80px;
+    }
+    .game-form__input {
+      width: 100%;
+      border: 1px solid darkblue;
+      border-radius: 4px;
+      padding: 0 8px;
+    }
+  }
+  .game-form__button-wrapper {
+    margin-top: auto;
+  }
+}
+.game-image {
+  padding: 10px 0;
 }

@@ -2,5 +2,7 @@
 
 <app-game-form [eventType]="eventType" [game]="game"  (formSubmit)="onSubmitClick($event)"></app-game-form>
 
-<button routerLink="/game-list" routerLinkActive="router-link-active">Back</button>
-<button (click)="onDeleteClick(game?.id)">Delete</button>
+<div class="button-container">
+  <button class="button button--far-left" (click)="onDeleteClick(game?.id)">Delete</button>
+  <button class="button" routerLink="/game-list" routerLinkActive="router-link-active">Back</button>
+</div>

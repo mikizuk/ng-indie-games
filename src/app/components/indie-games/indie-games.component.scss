@@ -42,7 +42,7 @@
       border-radius: 4px;
       &:hover {
         cursor: pointer;
-        color: red;
+        color: darken($color: #e71313, $amount: 15);;
         text-decoration: underline;
       }
     }
@@ -77,7 +77,7 @@
     text-transform: uppercase;
     &:hover {
       text-decoration: underline;
-      color: red;
+      color: #e71313;
     }
   }
 }

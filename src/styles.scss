@@ -37,9 +37,9 @@ body {
   background-color: white;
   &:not(:disabled):hover {
     cursor: pointer;
-    color: red;
+    color: #e71313;
     text-decoration: underline;
-    border: 2px solid red;
+    border: 2px solid #e71313;
   }
   &:disabled {
     color: grey;

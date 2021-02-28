@@ -12,8 +12,7 @@
     line-height: 30px;
     .game-list__item {
       color: #e71313;
-      font-weight: 400;
-      font-size: 20px;
+      font-size: 18px;
       text-decoration: none;
       &:hover {
         color:darken($color: #e71313, $amount: 15);

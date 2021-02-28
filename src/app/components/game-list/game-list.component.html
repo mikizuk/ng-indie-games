@@ -9,6 +9,6 @@
 <div *ngIf="games?.length === 0">
   No games in your list?
   <a class="nav__item" routerLink="/game-add" routerLinkActive="router-link-active">Add your first game now!</a>
-  Or add them from our suggested list
-  <button (click)="addSuggestedClick()">Add suggested</button>
+  Or add them from our suggested list!
+  <button class="button" (click)="addSuggestedClick()">Add</button>
 </div>

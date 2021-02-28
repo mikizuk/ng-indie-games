@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-deploy": " ng build --prod --base-href \"https://daxtersky.github.io/ng-indie-games/\" && npx angular-cli-ghpages — dir=dist/ng-indie-games",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

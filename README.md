@@ -1,7 +1,7 @@
 # NgIndieGames
 
 
-Angular CRUD app with RxJS and session storage
+Angular CRUD app with session storage
 
 ## Live demo
 

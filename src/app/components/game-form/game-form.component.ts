@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-game-form',
+  standalone: false,
   templateUrl: './game-form.component.html',
   styleUrls: ['./game-form.component.scss']
 })

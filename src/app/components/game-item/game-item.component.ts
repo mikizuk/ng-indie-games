@@ -4,6 +4,7 @@ import { IndieGamesService } from './../../service/indie-games.service';
 
 @Component({
   selector: 'app-game-item',
+  standalone: false,
   templateUrl: './game-item.component.html',
   styleUrls: ['./game-item.component.scss']
 })

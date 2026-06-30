@@ -3,6 +3,7 @@ import { IndieGamesService } from './../../service/indie-games.service';
 
 @Component({
   selector: 'app-game-list',
+  standalone: false,
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss']
 })

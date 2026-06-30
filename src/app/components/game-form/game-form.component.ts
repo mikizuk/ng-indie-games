@@ -1,26 +1,38 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EventType, Game, GameEvent } from '../../types/indie-games';
+
 @Component({
   selector: 'app-game-form',
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.Default,
   templateUrl: './game-form.component.html',
-  styleUrls: ['./game-form.component.scss']
+  styleUrls: ['./game-form.component.scss'],
 })
 export class GameFormComponent implements OnInit {
   @Input() eventType: EventType = EventType.Add;
-  @Input() game: Game;
+  @Input() game!: Game;
   @Output() formSubmit = new EventEmitter<GameEvent>();
   buttonCaption: string = '';
-  formGroup: FormGroup = this.formBuilder.group({
-    title: [null, [Validators.minLength(3)]],
-    id: [null],
-    previewImageUrl: [null],
-    itemUrl: [null],
-    author: [null],
-    email: [null, [Validators.required, Validators.email]],
-  });
+  formGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {
+    this.formGroup = this.formBuilder.group({
+      title: [null, [Validators.minLength(3)]],
+      id: [null],
+      previewImageUrl: [null],
+      itemUrl: [null],
+      author: [null],
+      email: [null, [Validators.required, Validators.email]],
+    });
+  }
 
   ngOnInit(): void {
     this.handleButtonType();
@@ -35,10 +47,10 @@ export class GameFormComponent implements OnInit {
       previewImageUrl: this.formGroup.get('previewImageUrl')?.value,
       itemUrl: this.formGroup.get('itemUrl')?.value,
       author: this.formGroup.get('author')?.value,
-      email: this.formGroup.get('email')?.value
+      email: this.formGroup.get('email')?.value,
     };
     this.formSubmit.emit(gameEvent);
-  }
+  };
 
   private handleButtonType = (): void => {
     if (this.eventType === EventType.Add) {
@@ -46,7 +58,7 @@ export class GameFormComponent implements OnInit {
     } else if (this.eventType === EventType.Update) {
       this.buttonCaption = 'Save';
     }
-  }
+  };
 
   private handleFormData = (): void => {
     this.formGroup.patchValue({
@@ -57,6 +69,5 @@ export class GameFormComponent implements OnInit {
       author: this.game?.author,
       email: this.game?.email,
     });
-  }
-
+  };
 }

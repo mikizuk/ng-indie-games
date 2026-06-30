@@ -1,3 +1,6 @@
+// RWD
+@use "./../../../rwd.scss";
+
 :host {
   display: flex;
   flex-direction: column;
@@ -15,12 +18,9 @@
       font-size: 18px;
       text-decoration: none;
       &:hover {
-        color:darken($color: #e71313, $amount: 15);
+        color: darken($color: #e71313, $amount: 15);
         text-decoration: underline;
       }
     }
   }
 }
-
-// RWD
-@import "./../../../rwd.scss";

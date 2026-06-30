@@ -2,13 +2,23 @@
 
 <ol class="game-list">
   <li class="game-list__element" *ngFor="let game of games">
-    <a class="game-list__item" routerLink="/game-item/{{game.id}}" routerLinkActive="router-link-active" >{{ game.title }}</a>
+    <a
+      class="game-list__item"
+      routerLink="/game-item/{{ game?.id }}"
+      routerLinkActive="router-link-active"
+      >{{ game.title }}</a
+    >
   </li>
 </ol>
 
 <div *ngIf="games?.length === 0">
   No games in your list?
-  <a class="nav__item" routerLink="/game-add" routerLinkActive="router-link-active">Add your first game now!</a>
+  <a
+    class="nav__item"
+    routerLink="/game-add"
+    routerLinkActive="router-link-active"
+    >Add your first game now!</a
+  >
   Or add them from our suggested list!
   <button class="button" (click)="addSuggestedClick()">Add</button>
 </div>

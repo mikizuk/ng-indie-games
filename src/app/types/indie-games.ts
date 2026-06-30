@@ -1,9 +1,9 @@
-declare const enum EventType {
+export enum EventType {
   Add,
-  Update
+  Update,
 }
 
-interface Game {
+export interface Game {
   id: number;
   title: string;
   previewImageUrl: string;
@@ -12,6 +12,6 @@ interface Game {
   email: string;
 }
 
-interface GameEvent extends Game {
+export interface GameEvent extends Game {
   eventType: EventType;
 }

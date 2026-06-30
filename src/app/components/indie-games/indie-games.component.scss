@@ -1,3 +1,6 @@
+// RWD
+@use "./../../../rwd.scss";
+
 // HEADER
 
 :host {
@@ -88,6 +91,3 @@
   z-index: -10;
   width: 1920px;
 }
-
-// RWD
-@import './../../../rwd.scss';

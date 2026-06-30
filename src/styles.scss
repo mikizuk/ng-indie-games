@@ -1,3 +1,6 @@
+// RWD
+@use "./rwd.scss";
+
 * {
   box-sizing: border-box;
 }
@@ -9,7 +12,8 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family:  "Segoe UI Emoji", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+  font-family:
+    "Segoe UI Emoji", Helvetica, Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Symbol";
   font-size: 14px;
   color: #333;
@@ -50,6 +54,3 @@ body {
 .button--far-left {
   margin-right: auto;
 }
-
-// RWD
-@import './rwd.scss';

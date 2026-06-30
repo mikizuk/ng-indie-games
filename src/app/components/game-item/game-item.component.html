@@ -1,8 +1,20 @@
-<h1>{{ game?.title }}</h1>
+<h1>{{ game.title }}</h1>
 
-<app-game-form [eventType]="eventType" [game]="game"  (formSubmit)="onSubmitClick($event)"></app-game-form>
+<app-game-form
+  [eventType]="eventType"
+  [game]="game"
+  (formSubmit)="onSubmitClick($event)"
+></app-game-form>
 
 <div class="button-container">
-  <button class="button button--far-left" (click)="onDeleteClick(game?.id)">Delete</button>
-  <button class="button" routerLink="/game-list" routerLinkActive="router-link-active">Back</button>
+  <button class="button button--far-left" (click)="onDeleteClick(game.id)">
+    Delete
+  </button>
+  <button
+    class="button"
+    routerLink="/game-list"
+    routerLinkActive="router-link-active"
+  >
+    Back
+  </button>
 </div>

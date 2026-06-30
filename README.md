@@ -1,11 +1,10 @@
 # NgIndieGames
 
-
 Angular CRUD app with session storage
 
 ## Live demo
 
-[Live demo link](https://daxtersky.github.io/ng-indie-games/game-list)
+[Live demo link](https://mikizuk.github.io/ng-indie-games)
 
 ## Development server
 

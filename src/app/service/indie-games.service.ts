@@ -41,7 +41,7 @@ export class IndieGamesService {
       id: 4,
       title: 'Inside',
       previewImageUrl:
-        'https://upload.wikimedia.org/wikipedia/en/thumb/5/50/INSIDE_Xbox_One_cover_art.png/220px-INSIDE_Xbox_One_cover_art.png',
+        'https://upload.wikimedia.org/wikipedia/en/5/50/INSIDE_Xbox_One_cover_art.png',
       itemUrl: 'https://store.steampowered.com/app/304430/INSIDE/',
       author: 'Playdead',
       email: 'email@placeholder.com',

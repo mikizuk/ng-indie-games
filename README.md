@@ -4,7 +4,7 @@ Angular CRUD app with session storage
 
 ## Live demo
 
-[Live demo link](https://mikizuk.github.io/ng-indie-games)
+[Live demo link](https://ng-indie-games.netlify.app)
 
 ## Development server
 

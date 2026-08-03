@@ -4,9 +4,7 @@
   [eventType]="eventType"
   [game]="game"
   (formSubmit)="onSubmitClick($event)"
-></app-game-form>
-
-<div class="button-container">
+>
   <button class="button button--far-left" (click)="onDeleteClick(game.id)">
     Delete
   </button>
@@ -17,4 +15,4 @@
   >
     Back
   </button>
-</div>
+</app-game-form>

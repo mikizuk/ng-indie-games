@@ -23,6 +23,7 @@
 
   <div class="game-form__button-wrapper">
     <button class="button" type="submit" [disabled]="formGroup.pristine || !formGroup.valid">{{ buttonCaption }}</button>
+    <ng-content></ng-content>
   </div>
 
 </form>

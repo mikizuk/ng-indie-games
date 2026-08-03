@@ -1,34 +1,34 @@
 @media screen and (max-width: 765px) {
   // INDIE GAMES
   .header {
-    padding: 0 10px;
+    padding: 0 12px;
     .header__title {
-      font-size: 16px;
+      font-size: 1rem;
     }
     .nav .nav__item {
-      padding: 16px 6px;
-      font-size: 12px;
-      border: 2px solid initial;
+      font-size: 0.75rem;
     }
   }
   .footer {
-    font-size: 12px;
-    font-weight: initial;
-  }
-  .svg-clouds {
-    position: fixed;
-    bottom: -255px;
-    left: -87px;
-    z-index: -10;
-    width: 1099px;
+    font-size: 0.7rem;
   }
   // GAMES LIST
-  .game-list .game-list__element {
-    line-height: 22px;
-    .game-list__item {
-      font-size: 16px;
-      font-weight: initial;
+  .game-toolbar {
+    width: 300px;
+  }
+  .game-list {
+    width: 300px;
+    .game-list__element {
+      line-height: 24px;
+      .game-list__item {
+        font-size: 0.9rem;
+      }
     }
+  }
+  .game-grid {
+    width: 300px;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
   }
 
   // GAME ...
@@ -38,9 +38,20 @@
   // GAME FORM
   .game-form {
     width: 300px;
+    .game-form__label {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      .game-form__title {
+        width: auto;
+      }
+    }
   }
   .game-image {
     width: 300px;
     height: 200px;
+  }
+  h1 {
+    font-size: 1.4rem;
   }
 }

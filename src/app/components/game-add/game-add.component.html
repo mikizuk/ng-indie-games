@@ -1,7 +1,5 @@
 <h1>Add new game</h1>
 
-<app-game-form [eventType]="eventType" (formSubmit)="onSubmitClick($event)"></app-game-form>
-
-<div class="button-container">
+<app-game-form [eventType]="eventType" (formSubmit)="onSubmitClick($event)">
   <button class="button" routerLink="/game-list" routerLinkActive="router-link-active">Back</button>
-</div>
+</app-game-form>

@@ -1,31 +1,42 @@
 <form [formGroup]="formGroup" class="game-form" (ngSubmit)="submitClick()">
-
   <label class="game-form__label">
-    <span class="game-form__title">Title</span>
-    <input class="game-form__input" type="text" formControlName="title">
+    <span class="game-form__title text-label">Title</span>
+    <input class="game-form__input input" type="text" formControlName="title" />
   </label>
   <label class="game-form__label">
-    <span class="game-form__title">Author</span>
-    <input class="game-form__input" type="text" formControlName="author">
+    <span class="game-form__title text-label">Author</span>
+    <input class="game-form__input input" type="text" formControlName="author" />
   </label>
   <label class="game-form__label">
-    <span class="game-form__title">Email</span>
-    <input class="game-form__input" type="text" formControlName="email">
+    <span class="game-form__title text-label">Email</span>
+    <input class="game-form__input input" type="text" formControlName="email" />
   </label>
   <label class="game-form__label">
-    <span class="game-form__title">Image</span>
-    <input class="game-form__input" type="text" formControlName="previewImageUrl">
+    <span class="game-form__title text-label">Image</span>
+    <input
+      class="game-form__input input"
+      type="text"
+      formControlName="previewImageUrl"
+    />
   </label>
   <label class="game-form__label">
-    <span class="game-form__title"><a [href]="formGroup.get('itemUrl')?.value" target="_blank">Link</a>&nbsp;</span>
-    <input class="game-form__input" type="text" formControlName="itemUrl">
+    <span class="game-form__title text-label"
+      ><a [href]="formGroup.get('itemUrl')?.value" target="_blank">Link</a
+      >&nbsp;</span
+    >
+    <input class="game-form__input input" type="text" formControlName="itemUrl" />
   </label>
 
   <div class="game-form__button-wrapper">
-    <button class="button" type="submit" [disabled]="formGroup.pristine || !formGroup.valid">{{ buttonCaption }}</button>
+    <button
+      class="button"
+      type="submit"
+      [disabled]="formGroup.pristine || !formGroup.valid"
+    >
+      {{ buttonCaption }}
+    </button>
     <ng-content></ng-content>
   </div>
-
 </form>
 
-<img class="game-image" [src]="formGroup.get('previewImageUrl')?.value">
+<img class="game-image" [src]="formGroup.get('previewImageUrl')?.value" />

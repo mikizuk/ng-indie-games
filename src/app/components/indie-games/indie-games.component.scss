@@ -1,5 +1,4 @@
-// RWD
-@use "./../../../rwd.scss";
+@use "../../../styles/_mixins.scss" as mixins;
 
 :host {
   min-height: 100%;
@@ -28,7 +27,6 @@
   }
 
   .header__title {
-    font-size: 1.4rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--c-primary);
@@ -95,12 +93,29 @@
   .footer__link {
     color: var(--c-muted);
     text-decoration: none;
-    text-transform: uppercase;
     font-weight: 700;
     transition: color 0.18s ease;
     &:hover {
       text-decoration: underline;
       color: var(--c-primary-dark);
     }
+  }
+}
+
+@include mixins.respond-mobile {
+  .header {
+    padding: 0 12px;
+
+    .header__title {
+      font-size: 1rem;
+    }
+
+    .nav .nav__item {
+      font-size: 0.75rem;
+    }
+  }
+
+  .footer {
+    font-size: 0.7rem;
   }
 }

@@ -7,10 +7,10 @@ import { GameAddComponent } from './components/game-add/game-add.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'game-list', pathMatch: 'full' },
-  { path: 'game-list', component: GameListComponent },
-  { path: 'game-item/:id', component: GameItemComponent },
-  { path: 'game-add', component: GameAddComponent },
-  { path: '**', component: GameListComponent },
+  { path: 'game-list', component: GameListComponent, data: { animation: 'GameList' } },
+  { path: 'game-item/:id', component: GameItemComponent, data: { animation: 'GameItem' } },
+  { path: 'game-add', component: GameAddComponent, data: { animation: 'GameAdd' } },
+  { path: '**', component: GameListComponent, data: { animation: 'GameList' } },
 ];
 
 @NgModule({

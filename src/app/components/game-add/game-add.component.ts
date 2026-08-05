@@ -12,6 +12,10 @@ import { GameFormComponent } from '../game-form/game-form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './game-add.component.html',
   styleUrls: ['./game-add.component.scss'],
+  host: {
+    'animate.enter': 'enter-animation',
+    'animate.leave': 'leave-animation'
+  }
 })
 export class GameAddComponent implements OnInit {
   eventType: EventType = EventType.Add;

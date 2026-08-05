@@ -15,6 +15,10 @@ type ViewMode = 'list' | 'grid';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss'],
+  host: {
+    'animate.enter': 'enter-animation',
+    'animate.leave': 'leave-animation'
+  }
 })
 export class GameListComponent implements OnInit {
   private gamesService = inject(IndieGamesService);

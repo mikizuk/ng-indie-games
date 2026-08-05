@@ -55,3 +55,34 @@ h1 {
     font-size: 1.4rem;
   }
 }
+
+/* route enter/leave animations (used with the new animate.enter / animate.leave compiler API) */
+.enter-animation {
+  animation: route-slide-in 250ms ease-out forwards;
+}
+
+.leave-animation {
+  animation: route-slide-out 250ms ease-out forwards;
+}
+
+@keyframes route-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes route-slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}

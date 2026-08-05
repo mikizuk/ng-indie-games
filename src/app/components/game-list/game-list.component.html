@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<ol class="game-list" *ngIf="viewMode() === 'list'">
+<ol class="game-list" *ngIf="viewMode() === 'list'" animate.enter="enter-animation" animate.leave="leave-animation">
   <li class="game-list__element" *ngFor="let game of sortedGames()">
     <a
       class="game-list__item"
@@ -64,7 +64,7 @@
   </li>
 </ol>
 
-<div class="game-grid" *ngIf="viewMode() === 'grid'">
+<div class="game-grid" *ngIf="viewMode() === 'grid'" animate.enter="enter-animation" animate.leave="leave-animation">
   <a
     class="game-grid__card"
     *ngFor="let game of sortedGames()"

@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit, signal, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal,
+  computed,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IndieGamesService } from './../../service/indie-games.service';
-import { Game } from '../../types/indie-games';
 
 type SortField = 'title' | 'author';
 type SortDirection = 'asc' | 'desc';
@@ -17,10 +22,10 @@ type ViewMode = 'list' | 'grid';
   styleUrls: ['./game-list.component.scss'],
   host: {
     'animate.enter': 'enter-animation',
-    'animate.leave': 'leave-animation'
-  }
+    'animate.leave': 'leave-animation',
+  },
 })
-export class GameListComponent implements OnInit {
+export class GameListComponent {
   private gamesService = inject(IndieGamesService);
   readonly games = this.gamesService.games; // Signal (computed)
 
@@ -29,21 +34,13 @@ export class GameListComponent implements OnInit {
   readonly viewMode = signal<ViewMode>('grid');
 
   readonly sortedGames = computed(() => {
-    const arr = [...this.games()];
     const dir = this.sortDirection() === 'asc' ? 1 : -1;
     const field = this.sortField();
-    return arr.sort((a, b) => {
-      const av = (a[field] || '').toLowerCase();
-      const bv = (b[field] || '').toLowerCase();
-      if (av < bv) return -1 * dir;
-      if (av > bv) return 1 * dir;
-      return 0;
-    });
+    return [...this.games()].sort(
+      (a, b) =>
+        dir * String(a[field] ?? '').localeCompare(String(b[field] ?? '')),
+    );
   });
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   addSuggestedClick = (): void => {
     this.gamesService.addSuggestedGames();

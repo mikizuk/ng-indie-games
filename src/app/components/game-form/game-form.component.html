@@ -39,4 +39,4 @@
   </div>
 </form>
 
-<img class="game-image" [src]="formGroup.get('previewImageUrl')?.value" />
+<img class="game-image" [src]="formGroup.get('previewImageUrl')?.value" [attr.alt]="formGroup.get('title')?.value || 'Game preview'" />

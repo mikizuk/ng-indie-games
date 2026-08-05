@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IndieGamesService } from './../../service/indie-games.service';
@@ -12,5 +12,5 @@ import { IndieGamesService } from './../../service/indie-games.service';
   styleUrls: ['./indie-games.component.scss'],
 })
 export class IndieGamesComponent {
-  constructor(private gamesService: IndieGamesService) {}
+  private gamesService = inject(IndieGamesService);
 }

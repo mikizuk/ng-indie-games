@@ -1,10 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
+  inject,
   input,
   output,
-  effect,
   computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,7 +15,6 @@ import {
 } from '@angular/forms';
 import { EventType, Game, GameEvent } from '../../types/indie-games';
 
-
 @Component({
   selector: 'app-game-form',
   standalone: true,
@@ -25,7 +23,7 @@ import { EventType, Game, GameEvent } from '../../types/indie-games';
   templateUrl: './game-form.component.html',
   styleUrls: ['./game-form.component.scss'],
 })
-export class GameFormComponent implements OnInit {
+export class GameFormComponent {
   readonly eventType = input<EventType>(EventType.Add);
   readonly game = input<Game | undefined>();
   readonly formSubmit = output<GameEvent>();
@@ -34,30 +32,16 @@ export class GameFormComponent implements OnInit {
     this.eventType() === EventType.Add ? 'Add game' : 'Save',
   );
 
-  formGroup: FormGroup;
+  private formBuilder = inject(FormBuilder);
 
-
-  constructor(private formBuilder: FormBuilder) {
-    this.formGroup = this.formBuilder.group({
-      title: [null, [Validators.minLength(3)]],
-      id: [null],
-      previewImageUrl: [null],
-      itemUrl: [null],
-      author: [null],
-      email: [null, [Validators.required, Validators.email]],
-    });
-
-    // react to incoming game changes and patch the form
-    effect(() => {
-      const g = this.game();
-      if (g) this.handleFormData();
-    });
-
-  }
-
-  ngOnInit(): void {
-    // nothing else needed — caption is computed
-  }
+  formGroup: FormGroup = this.formBuilder.group({
+    title: [null, [Validators.minLength(3)]],
+    id: [null],
+    previewImageUrl: [null],
+    itemUrl: [null],
+    author: [null],
+    email: [null, [Validators.required, Validators.email]],
+  });
 
   submitClick = (): void => {
     const gameEvent: GameEvent = {

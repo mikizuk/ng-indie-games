@@ -59,7 +59,7 @@ export class IndieGamesService {
     this.updateLocalStorage();
   };
 
-  private getUniqueId = (): Function | number => {
+  private getUniqueId = (): number => {
     const actualGamesIds: number[] = this._games().map((game) => game.id);
     const randomId = Utils.getRandomId();
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IndieGamesService } from './../../service/indie-games.service';
@@ -17,15 +17,11 @@ import { GameFormComponent } from '../game-form/game-form.component';
     'animate.leave': 'leave-animation'
   }
 })
-export class GameAddComponent implements OnInit {
+export class GameAddComponent {
   eventType: EventType = EventType.Add;
 
-  constructor(
-    private router: Router,
-    private gamesService: IndieGamesService,
-  ) {}
-
-  ngOnInit(): void {}
+  private router = inject(Router);
+  private gamesService = inject(IndieGamesService);
 
   onSubmitClick = (newGame: GameEvent): void => {
     this.gamesService.createGame(newGame);

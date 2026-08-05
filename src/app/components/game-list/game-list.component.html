@@ -1,96 +1,120 @@
 <h1>List of games</h1>
 
-<div *ngIf="games().length > 0" class="game-toolbar">
-  <div class="sort-group">
-    <span class="sort-group__label text-label">Sort by</span>
-    <div class="sort-group__field">
+@if (games().length > 0) {
+  @let visibleGames = sortedGames();
+
+  <div class="game-toolbar">
+    <div class="sort-group">
+      <span class="sort-group__label text-label">Sort by</span>
+      <div class="sort-group__field">
+        <button
+          type="button"
+          class="chip"
+          [class.chip--active]="sortField() === 'title'"
+          (click)="onSortFieldChange('title')"
+        >
+          Title
+        </button>
+        <button
+          type="button"
+          class="chip"
+          [class.chip--active]="sortField() === 'author'"
+          (click)="onSortFieldChange('author')"
+        >
+          Author
+        </button>
+      </div>
       <button
         type="button"
-        class="chip"
-        [class.chip--active]="sortField() === 'title'"
-        (click)="onSortFieldChange('title')"
+        class="chip chip--icon"
+        (click)="onSortDirectionToggle()"
+        [attr.aria-label]="sortDirection() === 'asc' ? 'Ascending' : 'Descending'"
       >
-        Title
-      </button>
-      <button
-        type="button"
-        class="chip"
-        [class.chip--active]="sortField() === 'author'"
-        (click)="onSortFieldChange('author')"
-      >
-        Author
+        {{ sortDirection() === 'asc' ? 'A→Z' : 'Z→A' }}
       </button>
     </div>
-    <button
-      type="button"
-      class="chip chip--icon"
-      (click)="onSortDirectionToggle()"
-      [attr.aria-label]="sortDirection() === 'asc' ? 'Ascending' : 'Descending'"
-    >
-      {{ sortDirection() === "asc" ? "A→Z" : "Z→A" }}
-    </button>
+
+    <div class="view-toggle">
+      <button
+        type="button"
+        class="view-toggle__btn"
+        [class.view-toggle__btn--active]="viewMode() === 'list'"
+        [attr.aria-pressed]="viewMode() === 'list'"
+        (click)="onViewModeChange('list')"
+        aria-label="List view"
+      >
+        &#9776;
+      </button>
+      <button
+        type="button"
+        class="view-toggle__btn"
+        [class.view-toggle__btn--active]="viewMode() === 'grid'"
+        [attr.aria-pressed]="viewMode() === 'grid'"
+        (click)="onViewModeChange('grid')"
+        aria-label="Grid view"
+      >
+        &#9638;
+      </button>
+    </div>
   </div>
 
-  <div class="view-toggle">
+  @switch (viewMode()) {
+    @case ('list') {
+      <ol
+        class="game-list"
+        animate.enter="enter-animation"
+        animate.leave="leave-animation"
+      >
+        @for (game of visibleGames; track game.id) {
+          <li class="game-list__element">
+            <a
+              class="game-list__item"
+              [routerLink]="['/game-item', game.id]"
+              routerLinkActive="router-link-active"
+            >
+              {{ game.title }}
+            </a>
+          </li>
+        }
+      </ol>
+    }
+    @case ('grid') {
+      <div
+        class="game-grid"
+        animate.enter="enter-animation"
+        animate.leave="leave-animation"
+      >
+        @for (game of visibleGames; track game.id) {
+          <a
+            class="game-grid__card"
+            [routerLink]="['/game-item', game.id]"
+            routerLinkActive="router-link-active"
+          >
+            <img
+              class="game-grid__image"
+              [src]="game.previewImageUrl"
+              [alt]="game.title"
+            />
+            <span class="game-grid__title">{{ game.title }}</span>
+            <span class="game-grid__author">{{ game.author }}</span>
+          </a>
+        }
+      </div>
+    }
+  }
+} @else {
+  <p>
+    No games in your list? Add your first game yourself or use our suggested
+    list!
+  </p>
+  <div class="game-intro">
     <button
-      type="button"
-      class="view-toggle__btn"
-      [class.view-toggle__btn--active]="viewMode() === 'list'"
-      (click)="onViewModeChange('list')"
-      aria-label="List view"
-    >
-      &#9776;
-    </button>
-    <button
-      type="button"
-      class="view-toggle__btn"
-      [class.view-toggle__btn--active]="viewMode() === 'grid'"
-      (click)="onViewModeChange('grid')"
-      aria-label="Grid view"
-    >
-      &#9638;
-    </button>
-  </div>
-</div>
-
-<ol class="game-list" *ngIf="viewMode() === 'list'" animate.enter="enter-animation" animate.leave="leave-animation">
-  <li class="game-list__element" *ngFor="let game of sortedGames()">
-    <a
-      class="game-list__item"
-      [routerLink]="['/game-item', game.id]"
+      class="button"
+      routerLink="/game-add"
       routerLinkActive="router-link-active"
-      >{{ game.title }}</a
     >
-  </li>
-</ol>
-
-<div class="game-grid" *ngIf="viewMode() === 'grid'" animate.enter="enter-animation" animate.leave="leave-animation">
-  <a
-    class="game-grid__card"
-    *ngFor="let game of sortedGames()"
-    [routerLink]="['/game-item', game.id]"
-    routerLinkActive="router-link-active"
-  >
-    <img
-      class="game-grid__image"
-      [src]="game.previewImageUrl"
-      alt="{{ game.title }}"
-    />
-    <span class="game-grid__title">{{ game.title }}</span>
-    <span class="game-grid__author">{{ game.author }}</span>
-  </a>
-</div>
-
-<p *ngIf="games().length === 0">
-  No games in your list? Add your first game yourself of us our suggested list!
-</p>
-<div *ngIf="games().length === 0" class="game-intro">
-  <button
-    class="button"
-    routerLink="/game-add"
-    routerLinkActive="router-link-active"
-  >
-    Add game
-  </button>
-  <button class="button" (click)="addSuggestedClick()">Use list</button>
-</div>
+      Add game
+    </button>
+    <button class="button" (click)="addSuggestedClick()">Use list</button>
+  </div>
+}

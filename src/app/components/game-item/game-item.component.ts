@@ -3,9 +3,7 @@ import {
   Component,
   inject,
   input,
-  effect,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IndieGamesService } from './../../service/indie-games.service';
@@ -21,8 +19,8 @@ import { GameFormComponent } from '../game-form/game-form.component';
   styleUrls: ['./game-item.component.scss'],
   host: {
     'animate.enter': 'enter-animation',
-    'animate.leave': 'leave-animation'
-  }
+    'animate.leave': 'leave-animation',
+  },
 })
 export class GameItemComponent {
   private gamesService = inject(IndieGamesService);
@@ -42,11 +40,9 @@ export class GameItemComponent {
       return;
     }
 
-    // load selected game into service signal
     this.gamesService.readGame(gameId);
   }
 
-  // expose a plain value for templates to avoid passing InputSignal objects
   get eventTypeValue(): EventType {
     return this.eventType();
   }

@@ -5,6 +5,7 @@ import {
   input,
   output,
   computed,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -43,6 +44,17 @@ export class GameFormComponent {
     email: [null, [Validators.required, Validators.email]],
   });
 
+  constructor() {
+    effect(() => {
+      const g = this.game();
+      if (g) {
+        this.handleFormData();
+      } else if (this.eventType() === EventType.Add) {
+        this.formGroup.reset();
+      }
+    });
+  }
+
   submitClick = (): void => {
     const gameEvent: GameEvent = {
       eventType: this.eventType(),
@@ -57,13 +69,18 @@ export class GameFormComponent {
   };
 
   private handleFormData = (): void => {
+    const g = this.game();
+    if (!g) {
+      return;
+    }
+
     this.formGroup.patchValue({
-      title: this.game()?.title,
-      id: this.game()?.id,
-      previewImageUrl: this.game()?.previewImageUrl,
-      itemUrl: this.game()?.itemUrl,
-      author: this.game()?.author,
-      email: this.game()?.email,
+      title: g.title ?? null,
+      id: g.id ?? null,
+      previewImageUrl: g.previewImageUrl ?? null,
+      itemUrl: g.itemUrl ?? null,
+      author: g.author ?? null,
+      email: g.email ?? null,
     });
   };
 }

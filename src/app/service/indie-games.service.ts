@@ -7,20 +7,15 @@ import { GAMES_SUGGESTED } from '../data/games-suggested';
   providedIn: 'root',
 })
 export class IndieGamesService {
-  // Internal writable signals
   private _games = signal<Game[]>([]);
   private _game = signal<Game | undefined>(undefined);
 
-  // Public read-only signals (computed)
   public games = computed(() => this._games());
   public game = computed(() => this._game());
 
-  // Derived example: default sorted by title asc
   public gamesSorted = computed(() => {
     return [...this._games()].sort((a, b) => a.title.localeCompare(b.title));
   });
-
-  // suggested games moved to a shared data file
 
   constructor() {
     if (sessionStorage.getItem('indie-games')?.length) {
@@ -43,7 +38,9 @@ export class IndieGamesService {
 
   public updateGame = (gameUpdated: GameEvent): void => {
     this._games.set(
-      this._games().map((item) => (item.id === gameUpdated.id ? gameUpdated : item)),
+      this._games().map((item) =>
+        item.id === gameUpdated.id ? gameUpdated : item,
+      ),
     );
     this.updateLocalStorage();
   };
@@ -71,7 +68,9 @@ export class IndieGamesService {
   };
 
   private getGamesFromLocalStorage = (): void => {
-    this._games.set(JSON.parse(sessionStorage?.getItem('indie-games') as string));
+    this._games.set(
+      JSON.parse(sessionStorage?.getItem('indie-games') as string),
+    );
   };
 
   private updateLocalStorage = (): void => {

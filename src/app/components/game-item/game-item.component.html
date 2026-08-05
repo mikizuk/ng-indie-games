@@ -1,11 +1,11 @@
-<h1>{{ game.title }}</h1>
+<h1>{{ game()?.title }}</h1>
 
 <app-game-form
-  [eventType]="eventType"
-  [game]="game"
+  [eventType]="eventTypeValue"
+  [game]="game()"
   (formSubmit)="onSubmitClick($event)"
 >
-  <button class="button button--far-left" (click)="onDeleteClick(game.id)">
+  <button class="button button--far-left" (click)="onDeleteClick(game()?.id)">
     Delete
   </button>
   <button

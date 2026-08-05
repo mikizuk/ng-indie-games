@@ -1,46 +1,62 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+  effect,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { IndieGamesService } from './../../service/indie-games.service';
-import { EventType, Game, GameEvent } from '../../types/indie-games';
+import { EventType, GameEvent } from '../../types/indie-games';
+import { GameFormComponent } from '../game-form/game-form.component';
 
 @Component({
   selector: 'app-game-item',
-  standalone: false,
-  changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [CommonModule, RouterModule, GameFormComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './game-item.component.html',
   styleUrls: ['./game-item.component.scss'],
 })
-export class GameItemComponent implements OnInit {
-  game!: Game;
-  eventType: EventType = EventType.Update;
+export class GameItemComponent {
+  private gamesService = inject(IndieGamesService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private gamesService: IndieGamesService,
-  ) {}
-
-  ngOnInit(): void {
-    const gameId = +(this.route.snapshot.paramMap.get('id') || 0);
-    this.gamesService.readGame(gameId);
-
-    this.gamesService.game$.subscribe({
-      next: (game: Game | null) => {
-        game ? (this.game = game) : this.router.navigate(['/game-list']);
-      },
-      error: (err) => console.log(err),
-    });
+  get game() {
+    return this.gamesService.game;
   }
 
-  onSubmitClick = (game: GameEvent): void => {
-    this.gamesService.updateGame(game);
-    this.router.navigate(['/games-list']);
+  readonly eventType = input<EventType>(EventType.Update);
+
+  constructor() {
+    const gameId = this.route.snapshot.paramMap.get('id');
+    if (!gameId) {
+      this.router.navigate(['/game-list']);
+      return;
+    }
+
+    // load selected game into service signal
+    this.gamesService.readGame(gameId);
+  }
+
+  // expose a plain value for templates to avoid passing InputSignal objects
+  get eventTypeValue(): EventType {
+    return this.eventType();
+  }
+
+  onSubmitClick = (gameEvent: GameEvent): void => {
+    this.gamesService.updateGame(gameEvent);
+    this.router.navigate(['/game-list']);
   };
 
-  onDeleteClick = (gameId: number | undefined): void => {
-    if (gameId && confirm(`Do you want to delete ${this.game?.title}?`)) {
-      this.gamesService.deleteGame(gameId);
-      this.router.navigate(['/games-list']);
+  onDeleteClick = (gameId: string | number | undefined): void => {
+    const id = gameId ?? this.game()?.id;
+    if (id && confirm(`Do you want to delete ${this.game()?.title}?`)) {
+      this.gamesService.deleteGame(id);
+      this.router.navigate(['/game-list']);
     }
   };
 }

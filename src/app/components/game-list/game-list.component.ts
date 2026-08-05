@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, signal, computed, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { IndieGamesService } from './../../service/indie-games.service';
 import { Game } from '../../types/indie-games';
 
@@ -8,56 +10,50 @@ type ViewMode = 'list' | 'grid';
 
 @Component({
   selector: 'app-game-list',
-  standalone: false,
-  changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [CommonModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.scss'],
 })
 export class GameListComponent implements OnInit {
-  games: Game[] = [];
-  sortedGames: Game[] = [];
-  sortField: SortField = 'title';
-  sortDirection: SortDirection = 'asc';
-  viewMode: ViewMode = 'grid';
+  private gamesService = inject(IndieGamesService);
+  readonly games = this.gamesService.games; // Signal (computed)
 
-  constructor(private gamesService: IndieGamesService) {}
+  readonly sortField = signal<SortField>('title');
+  readonly sortDirection = signal<SortDirection>('asc');
+  readonly viewMode = signal<ViewMode>('grid');
 
-  ngOnInit(): void {
-    this.gamesService.games$.subscribe({
-      next: (games: Game[]) => {
-        this.games = games;
-        this.applySort();
-      },
-      error: (err) => console.log(err),
+  readonly sortedGames = computed(() => {
+    const arr = [...this.games()];
+    const dir = this.sortDirection() === 'asc' ? 1 : -1;
+    const field = this.sortField();
+    return arr.sort((a, b) => {
+      const av = (a[field] || '').toLowerCase();
+      const bv = (b[field] || '').toLowerCase();
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
     });
-  }
+  });
+
+  constructor() {}
+
+  ngOnInit(): void {}
 
   addSuggestedClick = (): void => {
     this.gamesService.addSuggestedGames();
   };
 
   onSortFieldChange = (field: SortField): void => {
-    this.sortField = field;
-    this.applySort();
+    this.sortField.set(field);
   };
 
   onSortDirectionToggle = (): void => {
-    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-    this.applySort();
+    this.sortDirection.set(this.sortDirection() === 'asc' ? 'desc' : 'asc');
   };
 
   onViewModeChange = (mode: ViewMode): void => {
-    this.viewMode = mode;
-  };
-
-  private applySort = (): void => {
-    const dir = this.sortDirection === 'asc' ? 1 : -1;
-    this.sortedGames = [...this.games].sort((a, b) => {
-      const av = (a[this.sortField] || '').toLowerCase();
-      const bv = (b[this.sortField] || '').toLowerCase();
-      if (av < bv) return -1 * dir;
-      if (av > bv) return 1 * dir;
-      return 0;
-    });
+    this.viewMode.set(mode);
   };
 }

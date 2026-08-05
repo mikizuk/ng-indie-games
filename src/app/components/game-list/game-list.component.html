@@ -1,13 +1,13 @@
 <h1>List of games</h1>
 
-<div *ngIf="games?.length > 0" class="game-toolbar">
+<div *ngIf="games().length > 0" class="game-toolbar">
   <div class="sort-group">
     <span class="sort-group__label text-label">Sort by</span>
     <div class="sort-group__field">
       <button
         type="button"
         class="chip"
-        [class.chip--active]="sortField === 'title'"
+        [class.chip--active]="sortField() === 'title'"
         (click)="onSortFieldChange('title')"
       >
         Title
@@ -15,7 +15,7 @@
       <button
         type="button"
         class="chip"
-        [class.chip--active]="sortField === 'author'"
+        [class.chip--active]="sortField() === 'author'"
         (click)="onSortFieldChange('author')"
       >
         Author
@@ -25,9 +25,9 @@
       type="button"
       class="chip chip--icon"
       (click)="onSortDirectionToggle()"
-      [attr.aria-label]="sortDirection === 'asc' ? 'Ascending' : 'Descending'"
+      [attr.aria-label]="sortDirection() === 'asc' ? 'Ascending' : 'Descending'"
     >
-      {{ sortDirection === "asc" ? "A→Z" : "Z→A" }}
+      {{ sortDirection() === "asc" ? "A→Z" : "Z→A" }}
     </button>
   </div>
 
@@ -35,7 +35,7 @@
     <button
       type="button"
       class="view-toggle__btn"
-      [class.view-toggle__btn--active]="viewMode === 'list'"
+      [class.view-toggle__btn--active]="viewMode() === 'list'"
       (click)="onViewModeChange('list')"
       aria-label="List view"
     >
@@ -44,7 +44,7 @@
     <button
       type="button"
       class="view-toggle__btn"
-      [class.view-toggle__btn--active]="viewMode === 'grid'"
+      [class.view-toggle__btn--active]="viewMode() === 'grid'"
       (click)="onViewModeChange('grid')"
       aria-label="Grid view"
     >
@@ -53,22 +53,22 @@
   </div>
 </div>
 
-<ol class="game-list" *ngIf="viewMode === 'list'">
-  <li class="game-list__element" *ngFor="let game of sortedGames">
+<ol class="game-list" *ngIf="viewMode() === 'list'">
+  <li class="game-list__element" *ngFor="let game of sortedGames()">
     <a
       class="game-list__item"
-      routerLink="/game-item/{{ game?.id }}"
+      [routerLink]="['/game-item', game.id]"
       routerLinkActive="router-link-active"
       >{{ game.title }}</a
     >
   </li>
 </ol>
 
-<div class="game-grid" *ngIf="viewMode === 'grid'">
+<div class="game-grid" *ngIf="viewMode() === 'grid'">
   <a
     class="game-grid__card"
-    *ngFor="let game of sortedGames"
-    routerLink="/game-item/{{ game?.id }}"
+    *ngFor="let game of sortedGames()"
+    [routerLink]="['/game-item', game.id]"
     routerLinkActive="router-link-active"
   >
     <img
@@ -81,10 +81,10 @@
   </a>
 </div>
 
-<p *ngIf="games && games.length === 0">
+<p *ngIf="games().length === 0">
   No games in your list? Add your first game yourself of us our suggested list!
 </p>
-<div *ngIf="games && games.length === 0" class="game-intro">
+<div *ngIf="games().length === 0" class="game-intro">
   <button
     class="button"
     routerLink="/game-add"

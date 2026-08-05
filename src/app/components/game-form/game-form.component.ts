@@ -1,27 +1,41 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
+  input,
+  output,
+  effect,
+  computed,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { EventType, Game, GameEvent } from '../../types/indie-games';
+
 
 @Component({
   selector: 'app-game-form',
-  standalone: false,
-  changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './game-form.component.html',
   styleUrls: ['./game-form.component.scss'],
 })
 export class GameFormComponent implements OnInit {
-  @Input() eventType: EventType = EventType.Add;
-  @Input() game!: Game;
-  @Output() formSubmit = new EventEmitter<GameEvent>();
-  buttonCaption: string = '';
+  readonly eventType = input<EventType>(EventType.Add);
+  readonly game = input<Game | undefined>();
+  readonly formSubmit = output<GameEvent>();
+
+  readonly buttonCaption = computed(() =>
+    this.eventType() === EventType.Add ? 'Add game' : 'Save',
+  );
+
   formGroup: FormGroup;
+
 
   constructor(private formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
@@ -32,16 +46,22 @@ export class GameFormComponent implements OnInit {
       author: [null],
       email: [null, [Validators.required, Validators.email]],
     });
+
+    // react to incoming game changes and patch the form
+    effect(() => {
+      const g = this.game();
+      if (g) this.handleFormData();
+    });
+
   }
 
   ngOnInit(): void {
-    this.handleButtonType();
-    this.handleFormData();
+    // nothing else needed — caption is computed
   }
 
   submitClick = (): void => {
     const gameEvent: GameEvent = {
-      eventType: this.eventType,
+      eventType: this.eventType(),
       id: this.formGroup.get('id')?.value,
       title: this.formGroup.get('title')?.value,
       previewImageUrl: this.formGroup.get('previewImageUrl')?.value,
@@ -52,22 +72,14 @@ export class GameFormComponent implements OnInit {
     this.formSubmit.emit(gameEvent);
   };
 
-  private handleButtonType = (): void => {
-    if (this.eventType === EventType.Add) {
-      this.buttonCaption = 'Add game';
-    } else if (this.eventType === EventType.Update) {
-      this.buttonCaption = 'Save';
-    }
-  };
-
   private handleFormData = (): void => {
     this.formGroup.patchValue({
-      title: this.game?.title,
-      id: this.game?.id,
-      previewImageUrl: this.game?.previewImageUrl,
-      itemUrl: this.game?.itemUrl,
-      author: this.game?.author,
-      email: this.game?.email,
+      title: this.game()?.title,
+      id: this.game()?.id,
+      previewImageUrl: this.game()?.previewImageUrl,
+      itemUrl: this.game()?.itemUrl,
+      author: this.game()?.author,
+      email: this.game()?.email,
     });
   };
 }

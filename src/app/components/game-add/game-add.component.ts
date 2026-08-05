@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { IndieGamesService } from './../../service/indie-games.service';
 import { EventType, GameEvent } from '../../types/indie-games';
+import { GameFormComponent } from '../game-form/game-form.component';
 
 @Component({
   selector: 'app-game-add',
-  standalone: false,
-  changeDetection: ChangeDetectionStrategy.Default,
+  standalone: true,
+  imports: [CommonModule, RouterModule, GameFormComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './game-add.component.html',
   styleUrls: ['./game-add.component.scss'],
 })
@@ -22,6 +25,6 @@ export class GameAddComponent implements OnInit {
 
   onSubmitClick = (newGame: GameEvent): void => {
     this.gamesService.createGame(newGame);
-    this.router.navigate(['/games-list']);
+    this.router.navigate(['/game-list']);
   };
 }

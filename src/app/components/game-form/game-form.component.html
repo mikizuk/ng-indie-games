@@ -33,7 +33,7 @@
       type="submit"
       [disabled]="formGroup.pristine || !formGroup.valid"
     >
-      {{ buttonCaption }}
+      {{ buttonCaption() }}
     </button>
     <ng-content></ng-content>
   </div>
